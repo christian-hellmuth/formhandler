@@ -1,6 +1,7 @@
 <?php
 namespace Typoheads\Formhandler\Validator\ErrorCheck;
-    /*                                                                        *
+
+/*                                                                        *
      * This script is part of the TYPO3 project - inspiring people to share!  *
      *                                                                        *
      * TYPO3 is free software; you can redistribute it and/or modify it under *
@@ -15,14 +16,9 @@ namespace Typoheads\Formhandler\Validator\ErrorCheck;
 
 /**
  * Validates that an uploaded file has a maximum file size
- *
- * @author    Reinhard Führicht <rf@typoheads.at>
- * @package    Tx_Formhandler
- * @subpackage    ErrorChecks
  */
 class FileMaxSize extends AbstractErrorCheck
 {
-
     public function init($gp, $settings)
     {
         parent::init($gp, $settings);
@@ -42,7 +38,6 @@ class FileMaxSize extends AbstractErrorCheck
                 $files['name'][$this->formFieldName] = [$files['name'][$this->formFieldName]];
             }
             if (strlen($files['name'][$this->formFieldName][0]) > 0 && $maxSize) {
-
                 if (!is_array($files['size'][$this->formFieldName])) {
                     $files['size'][$this->formFieldName] = [$files['size'][$this->formFieldName]];
                 }
@@ -56,5 +51,4 @@ class FileMaxSize extends AbstractErrorCheck
         }
         return $checkFailed;
     }
-
 }

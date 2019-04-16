@@ -1,6 +1,7 @@
 <?php
 namespace Typoheads\Formhandler\Validator;
-    /*                                                                        *
+
+/*                                                                        *
      * This script is part of the TYPO3 project - inspiring people to share!  *
      *                                                                        *
      * TYPO3 is free software; you can redistribute it and/or modify it under *
@@ -34,15 +35,9 @@ namespace Typoheads\Formhandler\Validator;
  * plugin.Tx_Formhandler.settings.validators.1.config.fieldConf.lastname.errorCheck.1 = required
  * plugin.Tx_Formhandler.settings.validators.1.config.fieldConf.lastname.errorCheck.2 = minLength
  * plugin.Tx_Formhandler.settings.validators.1.config.fieldConf.lastname.errorCheck.2.value = 2
- *
- * @author    Reinhard Führicht <rf@typoheads.at>
- * @author Christian Opitz <co@netzelf.de>
- * @package    Tx_Formhandler
- * @subpackage    Validator
  */
 class DefaultValidator extends AbstractValidator
 {
-
     protected $restrictErrorChecks = [];
     protected $disableErrorCheckFields = [];
 
@@ -82,9 +77,9 @@ class DefaultValidator extends AbstractValidator
     public function validate(&$errors)
     {
 
-        //no config? validation returns TRUE
+        //no config? validation returns true
         if (!is_array($this->settings['fieldConf.'])) {
-            return TRUE;
+            return true;
         }
 
         if (isset($this->settings['disableErrorCheckFields.'])) {
@@ -230,11 +225,10 @@ class DefaultValidator extends AbstractValidator
                         empty($this->disableErrorCheckFields[$errorFieldName])
                     )
                 ) {
-
                     continue;
                 }
                 $classNameFix = ucfirst($check['check']);
-                if (strpos($classNameFix, 'Tx_') === FALSE && strpos($classNameFix, '\\') === FALSE) {
+                if (strpos($classNameFix, 'Tx_') === false && strpos($classNameFix, '\\') === false) {
                     $errorCheckObject = $this->componentManager->getComponent($this->utilityFuncs->prepareClassName('\\Typoheads\\Formhandler\\Validator\\ErrorCheck\\' . $classNameFix));
                     $fullClassName = $this->utilityFuncs->prepareClassName('\\Typoheads\\Formhandler\\Validator\\ErrorCheck\\' . $classNameFix);
                 } else {

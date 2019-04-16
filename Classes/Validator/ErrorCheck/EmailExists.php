@@ -1,6 +1,7 @@
 <?php
 namespace Typoheads\Formhandler\Validator\ErrorCheck;
-    /*                                                                        *
+
+/*                                                                        *
      * This script is part of the TYPO3 project - inspiring people to share!  *
      *                                                                        *
      * TYPO3 is free software; you can redistribute it and/or modify it under *
@@ -15,14 +16,9 @@ namespace Typoheads\Formhandler\Validator\ErrorCheck;
 
 /**
  * Validates that a specified field has valid email syntax.
- *
- * @author    Reinhard Führicht <rf@typoheads.at>
- * @package    Tx_Formhandler
- * @subpackage    ErrorChecks
  */
 class EmailExists extends AbstractErrorCheck
 {
-
     public function check()
     {
         $checkFailed = '';
@@ -38,7 +34,7 @@ class EmailExists extends AbstractErrorCheck
             $valid = getmxrr($hostname, $mxhosts);
             if ($valid) {
 
-                //Sometimes getmxrr returns TRUE, but empty mx hosts.
+                //Sometimes getmxrr returns true, but empty mx hosts.
                 $valid = !empty($mxhosts);
             }
             if (!$valid) {
@@ -47,5 +43,4 @@ class EmailExists extends AbstractErrorCheck
         }
         return $checkFailed;
     }
-
 }

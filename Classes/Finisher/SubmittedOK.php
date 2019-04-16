@@ -1,6 +1,7 @@
 <?php
 namespace Typoheads\Formhandler\Finisher;
-    /*                                                                        *
+
+/*                                                                        *
      * This script is part of the TYPO3 project - inspiring people to share!  *
      *                                                                        *
      * TYPO3 is free software; you can redistribute it and/or modify it under *
@@ -29,8 +30,6 @@ namespace Typoheads\Formhandler\Finisher;
  * finishers.3.config.csv.class = Tx_Formhandler_Generator_Csv
  * finishers.3.config.csv.exportFields = firstname,lastname,interests
  * </code>
- *
- * @author    Reinhard Führicht <rf@typoheads.at>
  */
 class SubmittedOK extends AbstractFinisher
 {
@@ -46,7 +45,7 @@ class SubmittedOK extends AbstractFinisher
         //read template file
         $this->templateFile = $this->globals->getTemplateCode();
         if ($this->settings['templateFile']) {
-            $this->templateFile = $this->utilityFuncs->readTemplateFile(FALSE, $this->settings);
+            $this->templateFile = $this->utilityFuncs->readTemplateFile(false, $this->settings);
         }
 
         //set view
@@ -70,5 +69,4 @@ class SubmittedOK extends AbstractFinisher
         $view->setComponentSettings($this->settings);
         return $view->render($this->gp, []);
     }
-
 }

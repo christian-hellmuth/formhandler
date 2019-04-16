@@ -1,6 +1,7 @@
 <?php
 namespace Typoheads\Formhandler\Interceptor;
-    /*                                                                        *
+
+/*                                                                        *
      * This script is part of the TYPO3 project - inspiring people to share!  *
      *                                                                        *
      * TYPO3 is free software; you can redistribute it and/or modify it under *
@@ -41,8 +42,6 @@ namespace Typoheads\Formhandler\Interceptor;
  * </code>
  *
  * This example configuration says that the form is allowed to be submitted twice in a period of 5 minutes and 30 times in 5 minutes globally.
- *
- * @author    Reinhard Führicht <rf@typoheads.at>
  * @see Tx_Formhandler_Logger_DB
  */
 class IPBlocking extends AbstractInterceptor
@@ -63,13 +62,12 @@ class IPBlocking extends AbstractInterceptor
      */
     public function process()
     {
-
         $ipTimebaseValue = $this->utilityFuncs->getSingle($this->settings['ip.']['timebase.'], 'value');
         $ipTimebaseUnit = $this->utilityFuncs->getSingle($this->settings['ip.']['timebase.'], 'unit');
         $ipMaxValue = $this->utilityFuncs->getSingle($this->settings['ip.'], 'threshold');
 
         if ($ipTimebaseValue && $ipTimebaseUnit && $ipMaxValue) {
-            $this->check($ipTimebaseValue, $ipTimebaseUnit, $ipMaxValue, TRUE);
+            $this->check($ipTimebaseValue, $ipTimebaseUnit, $ipMaxValue, true);
         }
 
         $globalTimebaseValue = $this->utilityFuncs->getSingle($this->settings['global.']['timebase.'], 'value');
@@ -77,14 +75,14 @@ class IPBlocking extends AbstractInterceptor
         $globalMaxValue = $this->utilityFuncs->getSingle($this->settings['global.'], 'threshold');
 
         if ($globalTimebaseValue && $globalTimebaseUnit && $globalMaxValue) {
-            $this->check($globalTimebaseValue, $globalTimebaseUnit, $globalMaxValue, FALSE);
+            $this->check($globalTimebaseValue, $globalTimebaseUnit, $globalMaxValue, false);
         }
 
         return $this->gp;
     }
 
     /**
-     * Checks if the form got submitted too often and throws Exception if TRUE.
+     * Checks if the form got submitted too often and throws Exception if true.
      *
      * @param int Timebase value
      * @param string Timebase unit (seconds|minutes|hours|days)
@@ -92,7 +90,7 @@ class IPBlocking extends AbstractInterceptor
      * @param boolean add IP address to where clause
      * @return void
      */
-    private function check($value, $unit, $maxValue, $addIPToWhere = TRUE)
+    private function check($value, $unit, $maxValue, $addIPToWhere = true)
     {
         $timestamp = $this->utilityFuncs->getTimestamp($value, $unit);
         $where = 'crdate >= ' . intval($timestamp);
@@ -101,19 +99,19 @@ class IPBlocking extends AbstractInterceptor
         }
         $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('uid,ip,crdate,params', $this->logTable, $where);
         if ($res && $GLOBALS['TYPO3_DB']->sql_num_rows($res) >= $maxValue) {
-            $this->log(TRUE);
+            $this->log(true);
             $message = 'You are not allowed to send more mails because the form got submitted too many times ';
             if ($addIPToWhere) {
                 $message .= 'by your IP address ';
             }
             $message .= 'in the last ' . $value . ' ' . $unit . '!';
             if ($this->settings['report.']['email']) {
-                while (FALSE !== ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res))) {
+                while (false !== ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res))) {
                     $rows[] = $row;
                 }
                 $intervalValue = $this->utilityFuncs->getSingle($this->settings['report.']['interval.'], 'value');
                 $intervalUnit = $this->utilityFuncs->getSingle($this->settings['report.']['interval.'], 'unit');
-                $send = FALSE;
+                $send = false;
                 if ($intervalUnit && $intervalValue) {
                     $intervalTstamp = $this->utilityFuncs->getTimestamp($intervalValue, $intervalUnit);
                     $where = 'pid=' . $GLOBALS['TSFE']->id . ' AND crdate>' . intval($intervalTstamp);
@@ -123,10 +121,10 @@ class IPBlocking extends AbstractInterceptor
 
                     $count = $GLOBALS['TYPO3_DB']->exec_SELECTcountRows('*', $this->logTable, $where);
                     if ($count > 0) {
-                        $send = TRUE;
+                        $send = true;
                     }
                 } else {
-                    $send = TRUE;
+                    $send = true;
                 }
                 if ($send) {
                     if ($addIPToWhere) {
@@ -209,5 +207,4 @@ class IPBlocking extends AbstractInterceptor
             $this->utilityFuncs->debugMessage('mail_message', [], 1, [$message]);
         }
     }
-
 }

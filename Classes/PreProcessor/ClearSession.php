@@ -1,6 +1,7 @@
 <?php
 namespace Typoheads\Formhandler\PreProcessor;
-    /*                                                                        *
+
+/*                                                                        *
      * This script is part of the TYPO3 project - inspiring people to share!  *
      *                                                                        *
      * TYPO3 is free software; you can redistribute it and/or modify it under *
@@ -21,10 +22,6 @@ namespace Typoheads\Formhandler\PreProcessor;
  * preProcessors.1.class = Tx_Formhandler_PreProcessor_ClearSession
  * </code>
  *
- * @author    Stefan Froemken <firma@sfroemken.de>
- * @author    Reinhard Führicht <rf@typoheads.at>
- * @package    Tx_Formhandler
- * @subpackage    PreProcessor
  */
 class ClearSession extends AbstractPreProcessor
 {
@@ -44,7 +41,7 @@ class ClearSession extends AbstractPreProcessor
         }
 
         foreach ($sessionKeysToRemove as $sessionKey) {
-            $GLOBALS['TSFE']->fe_user->setKey('ses', $sessionKey, NULL);
+            $GLOBALS['TSFE']->fe_user->setKey('ses', $sessionKey, null);
             $GLOBALS['TSFE']->fe_user->storeSessionData();
         }
 

@@ -1,6 +1,7 @@
 <?php
 namespace Typoheads\Formhandler\Finisher;
-    /*                                                                        *
+
+/*                                                                        *
      * This script is part of the TYPO3 project - inspiring people to share!  *
      *                                                                        *
      * TYPO3 is free software; you can redistribute it and/or modify it under *
@@ -16,8 +17,6 @@ namespace Typoheads\Formhandler\Finisher;
 /**
  * Finisher to set the currently used language to a set value.
  * Useful if you want to send the admin email in a specific language and do not want to use the language of the user.
- *
- * @author    Reinhard Führicht <rf@typoheads.at>
  */
 class SetLanguage extends AbstractFinisher
 {
@@ -29,7 +28,7 @@ class SetLanguage extends AbstractFinisher
      */
     public function process()
     {
-        if ($this->globals->getSession()->get('originalLanguage') === NULL) {
+        if ($this->globals->getSession()->get('originalLanguage') === null) {
             $this->globals->getSession()->set('originalLanguage', $GLOBALS['TSFE']->lang);
         }
         $languageCode = $this->utilityFuncs->getSingle($this->settings, 'languageCode');
@@ -46,18 +45,18 @@ class SetLanguage extends AbstractFinisher
 
     /**
      * Method to define whether the config is valid or not. If no, display a warning on the frontend.
-     * The default value is TRUE. This up to the finisher to overload this method
+     * The default value is true. This up to the finisher to overload this method
      *
      */
     public function validateConfig()
     {
         $settings = $this->globals->getSettings();
         if (is_array($settings['finishers.'])) {
-            $found = FALSE;
+            $found = false;
             foreach ($settings['finishers.'] as $finisherConfig) {
                 $currentFinisherClass = $this->utilityFuncs->getPreparedClassName($finisherConfig);
                 if ($currentFinisherClass === $this->utilityFuncs->prepareClassName('\Typoheads\Formhandler\Finisher\RestoreLanguage')) {
-                    $found = TRUE;
+                    $found = true;
                 }
             }
             if (!$found) {
@@ -66,5 +65,4 @@ class SetLanguage extends AbstractFinisher
         }
         return $found;
     }
-
 }

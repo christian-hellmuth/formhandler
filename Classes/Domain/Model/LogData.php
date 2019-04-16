@@ -1,7 +1,7 @@
 <?php
 namespace Typoheads\Formhandler\Domain\Model;
 
-    /*
+/*
      * This file is part of the TYPO3 CMS project.
      *
      * It is free software; you can redistribute it and/or modify it under
@@ -17,7 +17,6 @@ namespace Typoheads\Formhandler\Domain\Model;
 /**
  * Model for log data
  *
- * @author Reinhard Führicht <rf@typoheads.at>
  */
 class LogData extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
@@ -84,4 +83,3 @@ class LogData extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->isSpam = $isSpam;
     }
 }
-	

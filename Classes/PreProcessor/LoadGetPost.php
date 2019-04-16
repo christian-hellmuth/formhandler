@@ -1,6 +1,7 @@
 <?php
 namespace Typoheads\Formhandler\PreProcessor;
-    /*                                                                        *
+
+/*                                                                        *
      * This script is part of the TYPO3 project - inspiring people to share!  *
      *                                                                        *
      * TYPO3 is free software; you can redistribute it and/or modify it under *
@@ -15,8 +16,6 @@ namespace Typoheads\Formhandler\PreProcessor;
 
 /**
  * A pre processor for Formhandler loading GET/POST parameters passed from another page.
- *
- * @author    Reinhard Führicht <rf@typoheads.at>
  */
 class LoadGetPost extends AbstractPreProcessor
 {
@@ -50,5 +49,4 @@ class LoadGetPost extends AbstractPreProcessor
         }
         return $gp;
     }
-
 }

@@ -1,6 +1,7 @@
 <?php
 namespace Typoheads\Formhandler\PreProcessor;
-    /*                                                                        *
+
+/*                                                                        *
      * This script is part of the TYPO3 project - inspiring people to share!  *
      *                                                                        *
      * TYPO3 is free software; you can redistribute it and/or modify it under *
@@ -23,10 +24,6 @@ namespace Typoheads\Formhandler\PreProcessor;
  * preProcessors.1.config.clearTempFilesOlderThan.value = 17
  * preProcessors.1.config.clearTempFilesOlderThan.unit = hours
  * </code>
- *
- * @author    Reinhard Führicht <rf@typoheads.at>
- * @package    Tx_Formhandler
- * @subpackage    PreProcessor
  */
 class ClearTempFiles extends AbstractPreProcessor
 {
@@ -55,7 +52,6 @@ class ClearTempFiles extends AbstractPreProcessor
      * @param integer $olderThanValue Delete files older than this value.
      * @param string $olderThanUnit The unit for $olderThan. May be seconds|minutes|hours|days
      * @return void
-     * @author    Reinhard Führicht <rf@typoheads.at>
      */
     protected function clearTempFiles($olderThanValue, $olderThanUnit)
     {
@@ -96,5 +92,4 @@ class ClearTempFiles extends AbstractPreProcessor
             }
         }
     }
-
 }

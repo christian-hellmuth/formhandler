@@ -18,8 +18,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * A class validating a field via AJAX.
- *
- * @author    Reinhard Führicht <rf@typoheads.at>
  */
 class Validate
 {
@@ -100,7 +98,7 @@ class Validate
             $this->id = intval($_GET['id']);
         }
         $this->componentManager = GeneralUtility::makeInstance(\Typoheads\Formhandler\Component\Manager::class);
-        \Typoheads\Formhandler\Utility\Globals::setAjaxMode(TRUE);
+        \Typoheads\Formhandler\Utility\Globals::setAjaxMode(true);
         \Typoheads\Formhandler\Utility\GeneralUtility::initializeTSFE($this->id);
     }
 
@@ -122,5 +120,4 @@ class Validate
         $view->setTemplate($template, 'AJAX');
         return $view;
     }
-
 }

@@ -1,6 +1,7 @@
 <?php
 namespace Typoheads\Formhandler\Controller;
-    /*                                                                        *
+
+/*                                                                        *
      * This script is part of the TYPO3 project - inspiring people to share!  *
      *                                                                        *
      * TYPO3 is free software; you can redistribute it and/or modify it under *
@@ -15,8 +16,6 @@ namespace Typoheads\Formhandler\Controller;
 
 /**
  * Content to be parsed.
- *
- * @author    Reinhard Führicht <rf@typoheads.at>
  */
 class Content
 {

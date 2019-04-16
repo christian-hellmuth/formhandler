@@ -1,6 +1,7 @@
 <?php
 namespace Typoheads\Formhandler\Session;
-    /*                                                                        *
+
+/*                                                                        *
      * This script is part of the TYPO3 project - inspiring people to share!  *
     *                                                                        *
     * TYPO3 is free software; you can redistribute it and/or modify it under *
@@ -15,8 +16,6 @@ namespace Typoheads\Formhandler\Session;
 
 /**
  * An abstract session class for Formhandler
- *
- * @author    Reinhard Führicht <rf@typoheads.at>
  */
 abstract class AbstractSession extends \Typoheads\Formhandler\Component\AbstractClass
 {
@@ -27,7 +26,7 @@ abstract class AbstractSession extends \Typoheads\Formhandler\Component\Abstract
      * @access protected
      * @var boolean
      */
-    protected $started = FALSE;
+    protected $started = false;
 
     /**
      * Starts a new session
@@ -45,7 +44,7 @@ abstract class AbstractSession extends \Typoheads\Formhandler\Component\Abstract
             if (empty($current_session_id)) {
                 session_start();
             }
-            $this->started = TRUE;
+            $this->started = true;
         }
     }
 

@@ -1,6 +1,7 @@
 <?php
 namespace Typoheads\Formhandler\View;
-    /*                                                                        *
+
+/*                                                                        *
      * This script is part of the TYPO3 project - inspiring people to share!  *
      *                                                                        *
      * TYPO3 is free software; you can redistribute it and/or modify it under *
@@ -15,10 +16,6 @@ namespace Typoheads\Formhandler\View;
 
 /**
  * A default view for Formhandler
- *
- * @author    Reinhard Führicht <rf@typoheads.at>
- * @package    Tx_Formhandler
- * @subpackage    View
  */
 class Form extends AbstractView
 {
@@ -165,7 +162,7 @@ class Form extends AbstractView
             );
         } elseif (isset($this->settings['masterTemplateFile.']) && is_array($this->settings['masterTemplateFile.'])) {
             foreach ($this->settings['masterTemplateFile.'] as $key => $masterTemplate) {
-                if (FALSE === strpos($key, '.')) {
+                if (false === strpos($key, '.')) {
                     if (is_array($this->settings['masterTemplateFile.'][$key . '.'])) {
                         array_push(
                             $this->masterTemplates,
@@ -270,8 +267,8 @@ class Form extends AbstractView
                 $fullMarkerName = $matches[0][$i];
                 $fullEndMarker = $matches[0][$i + 1];
                 $conditions = preg_split('/\s*(\|\||&&)\s*/i', $conditionString, -1, PREG_SPLIT_DELIM_CAPTURE);
-                $operator = NULL;
-                $finalConditionResult = FALSE;
+                $operator = null;
+                $finalConditionResult = false;
                 $count = 0;
 
                 foreach ($conditions as $condition) {
@@ -320,10 +317,10 @@ class Form extends AbstractView
     protected function handleIssetSubpartCondition($condition)
     {
         $fieldname = $condition;
-        $negate = FALSE;
+        $negate = false;
         if (substr($condition, 0, 1) === '!') {
             $fieldname = substr($condition, 1);
-            $negate = TRUE;
+            $negate = true;
         }
         $value = $this->utilityFuncs->getGlobal($fieldname, $this->gp);
         if (is_array($value)) {
@@ -439,7 +436,7 @@ class Form extends AbstractView
         }
         $markers['###HIDDEN_FIELDS###'] = '
 			<input type="hidden" name="id" value="' . $GLOBALS['TSFE']->id . '" />
-			<input type="hidden" name="' . $name . '" value="1" />
+			<input type="hidden" name="' . htmlspecialchars($name) . '" value="1" />
 		';
 
         $name = 'randomID';
@@ -447,7 +444,7 @@ class Form extends AbstractView
             $name = $this->globals->getFormValuesPrefix() . '[randomID]';
         }
         $markers['###HIDDEN_FIELDS###'] .= '
-			<input type="hidden" name="' . $name . '" value="' . htmlspecialchars($this->gp['randomID']) . '" />
+			<input type="hidden" name="' . htmlspecialchars($name) . '" value="' . htmlspecialchars($this->gp['randomID']) . '" />
 		';
 
         $name = 'removeFile';
@@ -455,7 +452,7 @@ class Form extends AbstractView
             $name = $this->globals->getFormValuesPrefix() . '[removeFile]';
         }
         $markers['###HIDDEN_FIELDS###'] .= '
-			<input type="hidden" id="removeFile-' . htmlspecialchars($this->gp['randomID']) . '" name="' . $name . '" value="" />
+			<input type="hidden" id="removeFile-' . htmlspecialchars($this->gp['randomID']) . '" name="' . htmlspecialchars($name) . '" value="" />
 		';
 
         $name = 'removeFileField';
@@ -463,7 +460,7 @@ class Form extends AbstractView
             $name = $this->globals->getFormValuesPrefix() . '[removeFileField]';
         }
         $markers['###HIDDEN_FIELDS###'] .= '
-			<input type="hidden" id="removeFileField-' . htmlspecialchars($this->gp['randomID']) . '" name="' . $name . '" value="" />
+			<input type="hidden" id="removeFileField-' . htmlspecialchars($this->gp['randomID']) . '" name="' . htmlspecialchars($name) . '" value="" />
 		';
 
         $name = 'submitField';
@@ -471,7 +468,7 @@ class Form extends AbstractView
             $name = $this->globals->getFormValuesPrefix() . '[submitField]';
         }
         $markers['###HIDDEN_FIELDS###'] .= '
-			<input type="hidden" id="submitField-' . htmlspecialchars($this->gp['randomID']) . '" name="' . $name . '" value="" />
+			<input type="hidden" id="submitField-' . htmlspecialchars($this->gp['randomID']) . '" name="' . htmlspecialchars($name) . '" value="" />
 		';
 
         $name = 'formToken';
@@ -517,7 +514,7 @@ class Form extends AbstractView
         $markers['###formValuesPrefix###'] = $this->globals->getFormValuesPrefix();
 
         if ($this->gp['generated_authCode']) {
-            $markers['###auth_code###'] = $this->gp['generated_authCode'];
+            $markers['###auth_code###'] = htmlspecialchars($this->gp['generated_authCode']);
         }
 
         $markers['###ip###'] = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('REMOTE_ADDR');
@@ -550,7 +547,7 @@ class Form extends AbstractView
 
         // submit name for previous page
         $prevName = ' name="' . str_replace('#action#', 'prev', $name) . '" ';
-        $allowStepJumps = FALSE;
+        $allowStepJumps = false;
         if (isset($this->settings['allowStepJumps'])) {
             $allowStepJumps = (bool)$this->utilityFuncs->getSingle($this->settings, 'allowStepJumps');
         }
@@ -637,7 +634,7 @@ class Form extends AbstractView
             $markers['###CAPTCHA###'] = \ThinkopenAt\Captcha\Utility::makeCaptcha();
             $markers['###captcha###'] = $markers['###CAPTCHA###'];
         }
-        if (stristr($this->template, '###SR_FREECAP_###') && \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('sr_freecap')) {
+        if (stristr($this->template, '###SR_FREECAP_IMAGE###') && \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('sr_freecap')) {
             require_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('sr_freecap') . 'pi2/class.tx_srfreecap_pi2.php');
             $this->freeCap = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tx_srfreecap_pi2');
             $markers = array_merge($markers, $this->freeCap->makeCaptcha());
@@ -872,7 +869,6 @@ class Form extends AbstractView
                             $imgConf['image.'] = $settings['singleFileMarkerTemplate.']['image.'];
                         }
                         $thumb = $this->getThumbnail($imgConf, $fileInfo);
-
                     }
                     $stdWrappedFilename = $this->utilityFuncs->wrap($filename, $this->settings['totalFilesMarkerTemplate.'], 'filenameWrap');
 
@@ -921,7 +917,7 @@ class Form extends AbstractView
             $imgConf['image.']['file.']['width'] = '100m';
             $imgConf['image.']['file.']['height'] = '100m';
         }
-        $thumb = $this->cObj->IMAGE($imgConf['image.']);
+        $thumb = $this->cObj->cObjGetSingle('IMAGE', $imgConf['image.']);
         return $thumb;
     }
 
@@ -1111,7 +1107,7 @@ class Form extends AbstractView
         $this->template = preg_replace('/###value_.*?###/i', '', $this->template);
     }
 
-    protected function getValueMarkers($values, $level = 0, $prefix = 'value_', $doEncode = TRUE)
+    protected function getValueMarkers($values, $level = 0, $prefix = 'value_', $doEncode = true)
     {
         $markers = [];
 
@@ -1177,7 +1173,6 @@ class Form extends AbstractView
                     $markers['###' . $currPrefix . '_' . $v . '###'] = $activeString;
                     $markers['###' . strtoupper($currPrefix) . '###'] = $markers['###' . $currPrefix . '_' . $v . '###'];
                 }
-
             }
         }
         return $markers;

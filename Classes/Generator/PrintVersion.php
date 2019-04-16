@@ -1,6 +1,7 @@
 <?php
 namespace Typoheads\Formhandler\Generator;
-    /*                                                                        *
+
+/*                                                                        *
     * This script is part of the TYPO3 project - inspiring people to share!  *
     *                                                                        *
     * TYPO3 is free software; you can redistribute it and/or modify it under *
@@ -15,8 +16,6 @@ namespace Typoheads\Formhandler\Generator;
 
 /**
  * Generator class for Formhandler showing a print version of the SUBMITTED_OK template
- *
- * @author    Reinhard Führicht <rf@typoheads.at>
  */
 class PrintVersion extends AbstractGenerator
 {
@@ -26,7 +25,6 @@ class PrintVersion extends AbstractGenerator
      */
     public function process()
     {
-
     }
 
     /* (non-PHPdoc)
@@ -37,7 +35,6 @@ class PrintVersion extends AbstractGenerator
         $text = $this->utilityFuncs->getSingle($this->settings, 'linkText');
         if (strlen($text) == 0) {
             $text = $this->utilityFuncs->getTranslatedMessage($this->globals->getLangFiles(), 'print');
-
         }
         if (strlen($text) === 0) {
             $text = 'Print';

@@ -17,8 +17,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * A class removing uploaded files. This class is called via AJAX.
- *
- * @author    Reinhard Führicht <rf@typoheads.at>
  */
 class RemoveFile
 {
@@ -36,9 +34,7 @@ class RemoveFile
         if ($this->fieldName) {
             $sessionFiles = $this->globals->getSession()->get('files');
             if (is_array($sessionFiles)) {
-
                 foreach ($sessionFiles as $field => $files) {
-
                     if (!strcmp($field, $this->fieldName)) {
 
                         //get upload folder
@@ -47,10 +43,10 @@ class RemoveFile
                         //build absolute path to upload folder
                         $uploadPath = $this->utilityFuncs->getTYPO3Root() . $uploadFolder;
 
-                        $found = FALSE;
+                        $found = false;
                         foreach ($files as $key => &$fileInfo) {
                             if (!strcmp($fileInfo['uploaded_name'], $this->uploadedFileName)) {
-                                $found = TRUE;
+                                $found = true;
                                 unset($sessionFiles[$field][$key]);
                                 if (file_exists($uploadPath . $fileInfo['uploaded_name'])) {
                                     unlink($uploadPath . $fileInfo['uploaded_name']);
@@ -129,5 +125,4 @@ class RemoveFile
             $ajaxHandler->initAjax();
         }
     }
-
 }

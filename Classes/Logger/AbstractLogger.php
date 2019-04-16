@@ -1,6 +1,7 @@
 <?php
 namespace Typoheads\Formhandler\Logger;
-    /*                                                                        *
+
+/*                                                                        *
      * This script is part of the TYPO3 project - inspiring people to share!  *
      *                                                                        *
      * TYPO3 is free software; you can redistribute it and/or modify it under *
@@ -15,11 +16,8 @@ namespace Typoheads\Formhandler\Logger;
 
 /**
  * Abstract class for loggers
- *
- * @author    Reinhard Führicht <rf@typoheads.at>
  * @abstract
  */
 abstract class AbstractLogger extends \Typoheads\Formhandler\Component\AbstractComponent
 {
-
 }

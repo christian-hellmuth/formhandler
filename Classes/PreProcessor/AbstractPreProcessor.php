@@ -1,6 +1,7 @@
 <?php
 namespace Typoheads\Formhandler\PreProcessor;
-    /*                                                                        *
+
+/*                                                                        *
      * This script is part of the TYPO3 project - inspiring people to share!  *
      *                                                                        *
      * TYPO3 is free software; you can redistribute it and/or modify it under *
@@ -15,11 +16,8 @@ namespace Typoheads\Formhandler\PreProcessor;
 
 /**
  * An abstract class for pre processors used by Formhandler
- *
- * @author    Reinhard Führicht <rf@typoheads.at>
  * @abstract
  */
 abstract class AbstractPreProcessor extends \Typoheads\Formhandler\Component\AbstractComponent
 {
-
 }

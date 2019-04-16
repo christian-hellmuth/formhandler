@@ -1,6 +1,7 @@
 <?php
 namespace Typoheads\Formhandler\Component;
-    /*                                                                       *
+
+/*                                                                       *
     * This script is part of the TYPO3 project - inspiring people to share!  *
     *                                                                        *
     * TYPO3 is free software; you can redistribute it and/or modify it under *
@@ -16,8 +17,6 @@ namespace Typoheads\Formhandler\Component;
 /**
  * Abstract class for any usable Formhandler component.
  * This class defines some useful variables and a default constructor for all Formhandler components.
- *
- * @author    Reinhard Führicht <rf@typoheads.at>
  * @abstract
  */
 abstract class AbstractClass
@@ -75,7 +74,6 @@ abstract class AbstractClass
                                 \Typoheads\Formhandler\Utility\Globals $globals,
                                 \Typoheads\Formhandler\Utility\GeneralUtility $utilityFuncs)
     {
-
         $this->componentManager = $componentManager;
         $this->configuration = $configuration;
         $this->globals = $globals;

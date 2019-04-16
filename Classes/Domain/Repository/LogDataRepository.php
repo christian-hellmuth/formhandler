@@ -1,7 +1,7 @@
 <?php
 namespace Typoheads\Formhandler\Domain\Repository;
 
-    /*
+/*
      * This file is part of the TYPO3 CMS project.
      *
      * It is free software; you can redistribute it and/or modify it under
@@ -17,7 +17,6 @@ namespace Typoheads\Formhandler\Domain\Repository;
 /**
  * Repository for \Typoheads\Formhandler\Domain\Model\LogData
  *
- * @author Reinhard Führicht <rf@typoheads.at>
  */
 class LogDataRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
@@ -31,7 +30,7 @@ class LogDataRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     {
         /** @var $querySettings \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings */
         $querySettings = $this->objectManager->get('TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings');
-        $querySettings->setRespectStoragePage(FALSE);
+        $querySettings->setRespectStoragePage(false);
         $this->setDefaultQuerySettings($querySettings);
     }
 
@@ -58,13 +57,12 @@ class LogDataRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         )->execute();
     }
 
-    public function findDemanded(\Typoheads\Formhandler\Domain\Model\Demand $demand = NULL)
+    public function findDemanded(\Typoheads\Formhandler\Domain\Model\Demand $demand = null)
     {
-
         $query = $this->createQuery();
         $constraints = [$query->equals('deleted', 0)];
 
-        if ($demand !== NULL) {
+        if ($demand !== null) {
             if ($demand->getPid() > 0) {
                 $constraints[] = $query->equals('pid', $demand->getPid());
             }
@@ -86,7 +84,5 @@ class LogDataRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         } else {
             return $this->findAll();
         }
-
     }
-
 }

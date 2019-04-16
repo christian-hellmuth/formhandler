@@ -1,6 +1,7 @@
 <?php
 namespace Typoheads\Formhandler\Finisher;
-    /*                                                                        *
+
+/*                                                                        *
      * This script is part of the TYPO3 project - inspiring people to share!  *
      *                                                                        *
      * TYPO3 is free software; you can redistribute it and/or modify it under *
@@ -23,8 +24,6 @@ namespace Typoheads\Formhandler\Finisher;
  * finishers.4.class = Finisher_Redirect
  * finishers.4.config.redirectPage = 65
  * </code>
- *
- * @author    Reinhard Führicht <rf@typoheads.at>
  */
 class Redirect extends AbstractFinisher
 {
@@ -63,5 +62,4 @@ class Redirect extends AbstractFinisher
             $this->settings['redirectPage'] = $redirect;
         }
     }
-
 }

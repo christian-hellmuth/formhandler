@@ -1,6 +1,7 @@
 <?php
 namespace Typoheads\Formhandler\Finisher;
-    /*                                                                        *
+
+/*                                                                        *
      * This script is part of the TYPO3 project - inspiring people to share!  *
      *                                                                        *
      * TYPO3 is free software; you can redistribute it and/or modify it under *
@@ -16,8 +17,6 @@ namespace Typoheads\Formhandler\Finisher;
 /**
  * This finisher generates a unique code for a database entry.
  * This can be used for FE user registration or newsletter registration.
- *
- * @author    Reinhard Führicht <rf@typoheads.at>
  */
 class GenerateAuthCode extends AbstractFinisher
 {
@@ -131,5 +130,4 @@ class GenerateAuthCode extends AbstractFinisher
     {
         return \TYPO3\CMS\Core\Utility\GeneralUtility::hmac(serialize($row), 'formhandler');
     }
-
 }
